@@ -1,7 +1,5 @@
 package me.server.vitakick;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -27,12 +25,13 @@ public final class VitaColdStartKick extends JavaPlugin implements Listener {
         String name = player.getName();
 
         if (TARGET_NAME_PATTERN.matcher(name).matches()) {
+            // Задержка 70 тиков (3.5 секунды): мир полностью прогрузится, клиент войдет в стабильный цикл
             getServer().getScheduler().runTaskLater(this, () -> {
                 if (player.isOnline()) {
-                    Component kickReason = Component.text("Холодный старт Виты. Перезайдите под своим ником!", NamedTextColor.RED);
-                    player.kick(kickReason);
+                    // Используем классический kickPlayer без сложного JSON/Adventure, чтобы не ронять клиент Виты
+                    player.kickPlayer("§cХолодный старт Виты. Перезайдите!");
                 }
-            }, 20L);
+            }, 70L);
         }
     }
 }
