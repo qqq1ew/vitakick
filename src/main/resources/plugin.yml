@@ -1,0 +1,6 @@
+name: VitaColdStartKick
+version: '1.0'
+main: me.server.vitakick.VitaColdStartKick
+api-version: '1.21'
+author: umagical
+description: Kicks cold-start Vita players with delay after joining the world.
